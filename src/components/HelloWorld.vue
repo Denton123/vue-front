@@ -2,9 +2,11 @@
     <div>
         <el-container>
             <el-header class="Header">
-                <my-header></my-header>
+                <my-header />
             </el-header>
-            <el-main class="Main">Main</el-main>
+            <el-main class="Main">
+                <router-view />
+            </el-main>
         </el-container>
     </div>
 </template>
@@ -36,21 +38,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+.el-header{
+    padding: 0;
+}
     .Header{
         width: 100%;
         line-height: 50px;
         box-shadow: 0 1px 3px rgba(26,26,26,.1);
-        // &-inner{
-        //     width: 80%;
-        //     margin: 0 auto;
-        //     height: 100%;
-        // }
-        // &-mine{
-        //     float: right;
-        //     height: 100%;
-        //     .el-dropdown{
-        //         top: 4px;
-        //     }
-        // }
+    }
+    .Main{
+        width: 70%;
+        margin: 0 auto;
     }
 </style>

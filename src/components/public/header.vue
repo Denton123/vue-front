@@ -23,7 +23,6 @@
 </template>
 
 <script>
-
 	export default{
 		data () {
 			return {
@@ -50,7 +49,7 @@
 <style lang="scss">
 	.Header{
         &-inner{
-            width: 80%;
+            width: 70%;
             margin: 0 auto;
             height: 100%;
         }

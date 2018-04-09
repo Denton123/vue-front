@@ -3,6 +3,11 @@
 export
 {
     Slider,
-    Button
+    Button,
+    Form,
+    FormItem,
+    Input,
+    Icon,
+    Avatar
 }
 from 'iview'

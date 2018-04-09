@@ -3,13 +3,32 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './vuex/index'
+
+
 require('./config/init.js')
+router.beforeEach((to, from, next) => {
+	if (to.meta.requiresAuth && store.state.type) {
+		if (store.state.type) {
+			next()
+		} else {
+			next({
+				path: '/login',
+				query: {redirect: to.fullPath}
+			})
+		}
+	} else {
+		next()
+	}
+})
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

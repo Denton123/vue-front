@@ -12,7 +12,6 @@
 			  </el-form-item>
               <el-form-item label="Password" prop="password">
                   <el-input 
-                        type="password"
                         v-model="formInline.password" 
                         placeholder="Password" />
               </el-form-item>
@@ -56,12 +55,14 @@ import api from '../utils/api.js'
                     if (valid) {
                         var that = this
                         this.ajaxPost(users.login, this.formInline, res => {
-                            if (res.data === 200) {
+                            console.log(res);
+                            if (res.data !== 'error') {
                                 this.$message.success('登录成功')
-                                this.$store.state.type = 'true'
-                                console.log(this.$store.state.type);
+                                this.$store.state.type = true
+                                // let user = JSON.stringify(res.data.id)
+                                localStorage.setItem('user', res.data.id)
                                 setTimeout(()=>{
-                                    this.$router.push('/')
+                                    this.$router.push('/mine')
                                 }, 3500)
                             } else {
                                 this.$message.error('用户名或者密码错误')
@@ -101,3 +102,6 @@ import api from '../utils/api.js'
 		margin: 0 auto;
 	}
 </style>
+
+
+

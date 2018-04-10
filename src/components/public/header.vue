@@ -2,7 +2,7 @@
 	<div class="Header-inner">
         <div class="Header-mine">
                 <el-dropdown>
-                    <Avatar icon="person" size="large" />
+                    <Avatar icon="person" size="large" :src="imageUrl" />
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item>
                             <Icon type="person" />
@@ -26,6 +26,7 @@
 	export default{
 		data () {
 			return {
+                imageUrl: ''
 			}
 		},
 		methods: {
@@ -41,8 +42,19 @@
 						}, 1000)
 					}
 				})
-			}
-		}
+			},
+            getUser() {
+                var userId = localStorage.getItem('user')
+                this.ajaxGet(users.findUser + '/' + userId, res=> {
+                    if (res.data.avatar !== null) {
+                        this.imageUrl = '/uploadImgs/' + res.data.avatar
+                    }
+                })
+            }
+		},
+        mounted () {
+            this.getUser()
+        }
 	}
 </script>
 

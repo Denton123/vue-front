@@ -23,17 +23,5 @@ export default {
 				console.log(err);
 			})
 		}
-		// 获取后台get方法
-		Vue.prototype.api = () => {
-			const users = {
-				users: host + '/user/users',
-				login: host + '/user/login',
-				register: host + '/user/register',
-			}
-			const auth = {
-				login: auth + '/auth/login'
-			}
-			return 
-		}
 	}
 }

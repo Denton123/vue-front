@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import func from '../utils/func.js'
-import api from '../utils/api.js'
 import myHeader from './public/header.vue'
 export default {
   name: 'HelloWorld',
@@ -38,8 +36,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+.el-container{
+  background: #f6f6f6;
+}
 .el-header{
     padding: 0;
+    background: #fff;
+
 }
     .Header{
         width: 100%;

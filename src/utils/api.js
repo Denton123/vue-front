@@ -11,3 +11,6 @@ global.users = {
 	logout: host + '/user/logout',
 	update: host + '/user/update',
 }
+global.question = {
+	list: host + '/question/list',
+}

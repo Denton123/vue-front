@@ -1,5 +1,5 @@
 <template>
-    <div class="mine-edit">
+    <div class="mine-edit mr-top">
         <el-form 
             :model="editForm" :rules="rules" ref="editForm" label-width="100px" class="mine-edit-editForm">
             <el-form-item label="用户名" prop="name">
@@ -57,7 +57,11 @@ export default {
                 var userId = localStorage.getItem('user')
                 this.ajaxPost(users.update + '/' + userId, this.editForm, res=>{
                     console.log(res);
-                    this.editForm['sex'] = (this.editForm['sex'] === 'female') ? '女' : '男'
+                    if (res.data['0'] === 1) {
+                        this.$message.success('修改成功')
+                        this.$refs[formName].resetFields();
+                        this.$parent.changeInfo()
+                    }
                 })
             }
         })
@@ -73,11 +77,9 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
     .mine-edit{
       background: #fff;
-      margin-top: 20px;
       box-shadow: 0 1px 3px rgba(26,26,26,.1);
       border-radius: 2px;
         &-editForm{

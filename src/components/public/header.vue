@@ -2,7 +2,8 @@
 	<div class="Header-inner">
         <div class="Header-mine">
                 <el-dropdown>
-                    <Avatar icon="person" size="large" :src="imageUrl" />
+                    <!-- <img   v-if="imageUrl !== null"> -->
+                    <Avatar icon="person" size="large" :src="imageUrl"/>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item>
                             <Icon type="person" />
@@ -26,12 +27,12 @@
 	export default{
 		data () {
 			return {
-                imageUrl: ''
+                imageUrl: null
 			}
 		},
 		methods: {
 			change () {
-				console.log('obj');
+				this.$router.push('/mine')
 			},
 			logout () {
 				this.ajaxGet(users.logout, res => {
@@ -54,6 +55,7 @@
 		},
         mounted () {
             this.getUser()
+            console.log(this.imageUrl);
         }
 	}
 </script>
@@ -61,7 +63,7 @@
 <style lang="scss">
 	.Header{
         &-inner{
-            width: 70%;
+            width: 60%;
             margin: 0 auto;
             height: 100%;
         }

@@ -6,9 +6,11 @@ import api from '../utils/api'
 import * as iviewComponent from './iview.js'
 import * as elementComponent from './element-ui.js'
 
+Vue.use(require('vue-moment'))
+
 import 'iview/dist/styles/iview.css'
 import 'element-ui/lib/theme-chalk/index.css';
-
+import '../../static/sass/common.sass'
 Vue.use(func)
 
 Object.keys(elementComponent).forEach(function (component) {

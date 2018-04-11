@@ -21,7 +21,7 @@ export default {
     }
   },
   methods: {
-    
+
   },
   mounted () {
   },
@@ -37,6 +37,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .el-container{
+  width: 100%;
+  height: 100%;
   background: #f6f6f6;
 }
 .el-header{
@@ -50,7 +52,7 @@ export default {
         box-shadow: 0 1px 3px rgba(26,26,26,.1);
     }
     .Main{
-        width: 70%;
+        width: 60%;
         margin: 0 auto;
     }
 </style>

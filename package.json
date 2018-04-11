@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "iview": "^2.12.0",
+    "moment": "^2.22.0",
     "vue": "^2.5.2",
+    "vue-moment": "^3.2.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

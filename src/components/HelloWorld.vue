@@ -44,7 +44,6 @@ export default {
 .el-header{
     padding: 0;
     background: #fff;
-
 }
     .Header{
         width: 100%;
@@ -53,6 +52,7 @@ export default {
     }
     .Main{
         width: 60%;
+        padding: 20px 0px;
         margin: 0 auto;
     }
 </style>

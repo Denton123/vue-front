@@ -5,6 +5,7 @@ import login from '@/views/login'
 import mine from '@/pages/mine/mine'
 import edit from '@/pages/mine/edit'
 import child from '@/pages/mine/mine-child'
+import questionDetail from '@/pages/detail/questionDetail'
 
 Vue.use(Router)
 
@@ -16,6 +17,10 @@ export default new Router({
       component: HelloWorld,
       meta: { requiresAuth: true },
       children: [
+        {
+          path: '/question/:id',
+          component: questionDetail,
+        },
         {
           path: '/mine',
           component: mine,

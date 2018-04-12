@@ -13,4 +13,10 @@ global.users = {
 }
 global.question = {
 	list: host + '/question/list',
+	showById: host + '/question/showById',
+	showByUser: host + '/question/showByUser',
 }
+global.article = { 
+	list: host + '/article/list',
+}
+global.id= localStorage.getItem('user')

@@ -8,6 +8,10 @@ export
     FormItem,
     Input,
     Icon,
-    Avatar
+    Avatar,
+    Spin,
+    Collapse,
+    Panel,
+    Modal
 }
 from 'iview'

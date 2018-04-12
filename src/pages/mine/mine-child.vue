@@ -6,6 +6,8 @@
 		    		<component
 		    			:is="model.cardComponent"
 		    			:listData="listData"
+		    			:tabName = "model.label"
+		    			:blankIcon = "model.blankIcon"
 		    			/>
 		    	</el-tab-pane>
 			</el-tabs>
@@ -30,9 +32,10 @@ import message from './message.js'
 		},
 		methods: {
 			handleClick (tab, event) {
-				this.ajaxGet('api/' + tab.name + '/list', res=> {
+				this.ajaxGet('api/' + tab.name + '/showByUser/' + id, res=> {
 					console.log(res);
 					this.listData = res.data
+					console.log(this.listData.length);
 				})
 			}
 		},

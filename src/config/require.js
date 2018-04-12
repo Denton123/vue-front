@@ -13,6 +13,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import '../../static/sass/common.sass'
 Vue.use(func)
 
+import VueQuill from 'vue-quill'
+Vue.use(VueQuill)
+
 Object.keys(elementComponent).forEach(function (component) {
 	switch (component) {
 	case 'Loading':

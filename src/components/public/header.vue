@@ -1,8 +1,10 @@
 <template>
 	<div class="Header-inner">
+        <div class="Header-logo">
+            <h1>南飞</h1>
+        </div>
         <div class="Header-mine">
                 <el-dropdown>
-                    <!-- <img   v-if="imageUrl !== null"> -->
                     <Avatar icon="person" size="large" :src="imageUrl"/>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item>
@@ -66,6 +68,11 @@
             width: 60%;
             margin: 0 auto;
             height: 100%;
+        }
+        &-logo{
+            float: left;
+            line-height: 57px;
+            font-size: 16px;
         }
         &-mine{
             float: right;

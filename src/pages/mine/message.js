@@ -4,27 +4,38 @@ export default [
 		label: '动态',
 		name: 'dynamic',
 		cardComponent: card,
-		url: question.list
+		url: question.list,
+		blankIcon: 'el-icon-news'
 	},
 	{
 		label: '回答',
-		name: 'answer'
+		name: 'answer',
+		cardComponent: card,
+		blankIcon: 'el-icon-tickets'
 	},
 	{
 		label: '提问',
 		name: 'question',
-		cardComponent: card
+		cardComponent: card,
+		blankIcon: 'el-icon-document'
 	},
 	{
 		label: '文章',
-		name: 'article'
+		name: 'article',
+		cardComponent: card,
+		url: article.list,
+		blankIcon: 'el-icon-news'
 	},
 	{
 		label: '专栏',
-		name: 'column'
+		name: 'column',
+		cardComponent: card,
+		blankIcon: 'el-icon-menu'
 	},
 	{
 		label: '想法',
-		name: 'idea'
+		name: 'idea',
+		cardComponent: card,
+		blankIcon: 'el-icon-loading'
 	}
 ]

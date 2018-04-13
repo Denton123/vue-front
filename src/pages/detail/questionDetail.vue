@@ -45,29 +45,16 @@ import msg from '../formMsg'
 			}
 		},
 		methods: {
-			html (str) {
-				 str = str.replace(/&/g, '&amp;');
-        str = str.replace(/</g, '&lt;');
-        str = str.replace(/>/g, '&gt;');
-        str = str.replace(/"/g, '&quot;');
-        str = str.replace(/'/g, '&#039;');
-        return str;
-			},
-			hm(str){
-				str = str.replace(/&amp;/g, '&');
-        str = str.replace(/&lt;/g, '<');
-        str = str.replace(/&gt;/g, '>');
-        str = str.replace(/&quot;/g, "''");
-        str = str.replace(/&#039;/g, "'");
-        return str;
-    },
-    remo(str) {
-    	return str.replace(/<[^>]+>/g,"")
-    },
+		    removeHtml(html) {
+		    	 html = html.replace(/<\/?.+?>/g, "");
+
+html= html.replace(/&nbsp;/g, " ");
+return html
+		    },
 			getMsg () {
 				this.ajaxGet(question.showById + '/' + this.problem_id, res=>{
 					this.title = res.data.title
-					this.content = this.remo(res.data.content)
+					this.content = this.removeHtml(res.data.content)
 					this.form.title = res.data.title
 					this.form.content = res.data.content
 				})

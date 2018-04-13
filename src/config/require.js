@@ -13,8 +13,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 import '../../static/sass/common.sass'
 Vue.use(func)
 
-import VueQuill from 'vue-quill'
-Vue.use(VueQuill)
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor)
 
 Object.keys(elementComponent).forEach(function (component) {
 	switch (component) {

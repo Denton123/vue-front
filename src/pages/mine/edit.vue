@@ -55,7 +55,7 @@ export default {
         this.$refs[formName].validate((valid) => {
             if(valid) {
                 var userId = localStorage.getItem('user')
-                this.ajaxPost(users.update + '/' + userId, this.editForm, res=>{
+                this.ajaxPost(users.update + '/' + userId + '/info', this.editForm, res=>{
                     console.log(res);
                     if (res.data['0'] === 1) {
                         this.$message.success('修改成功')
@@ -68,6 +68,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.rules);
   },
   computed: {
     

@@ -5,8 +5,10 @@ import func from '../utils/util'
 import api from '../utils/api'
 import * as iviewComponent from './iview.js'
 import * as elementComponent from './element-ui.js'
+// import moment from 'moment'
 
 Vue.use(require('vue-moment'))
+// Vue.use(moment)
 
 import 'iview/dist/styles/iview.css'
 import 'element-ui/lib/theme-chalk/index.css';

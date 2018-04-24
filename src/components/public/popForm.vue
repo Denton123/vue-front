@@ -81,9 +81,7 @@ export default {
         this.$emit('editQuestion')
     },
     submitForm(formName) {
-        // console.log(this.$refs[formName]);
         this.$refs[formName].validate((valid) => {
-            // console.log(valid);
             if (valid) {
                 this.$emit('submit', formName)
             } else {

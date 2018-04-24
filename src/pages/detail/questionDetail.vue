@@ -3,15 +3,17 @@
 		<div class="question-header">
 			<h1>
 				<i class="el-icon-question" />
-				{{title}}
+				{{detailSetting.title}}
 				<i class="el-icon-edit" @click="editQuestion">修改</i>
+				<el-button class="fl-r" @click="goBack" type="primary">返回</el-button>
+				<span>{{moment(detailSetting.date).startOf('minutes').fromNow()}}</span>
 			</h1>
-			 <el-collapse accordion v-if="content!== ''">
+			 <el-collapse accordion v-if="detailSetting.content!== ''">
 				<el-collapse-item>
 					<template slot="title">
 					  展开内容
 					</template>
-					<div>{{content}}</div>
+					<div>{{detailSetting.content}}</div>
 				</el-collapse-item>
 			</el-collapse>
 			<popForm 
@@ -21,7 +23,6 @@
 				:editComponent="editComponent"
 				@editQuestion="editQuestion"
 				@submit="submit(form)"/>
-
 		</div>
 	</div>
 </template> 
@@ -29,11 +30,15 @@
 <script>
 import popForm from '../../components/public/popForm'
 import msg from '../formMsg'
+import moment from 'moment'
 	export default {
 		data () {
 			return {
-				title: '',
-				content: '',
+				detailSetting: {
+					title: '',
+					content: '',
+					date: ''
+				},
 				show: false,
 				theme: '问题',
 				form: {
@@ -45,16 +50,19 @@ import msg from '../formMsg'
 			}
 		},
 		methods: {
+			// 处理时间
+			moment (data) {
+				return moment(data)
+			},
 		    removeHtml(html) {
-		    	 html = html.replace(/<\/?.+?>/g, "");
-
-html= html.replace(/&nbsp;/g, " ");
-return html
+		    	return html.replace(/<.*?>/ig,"")
 		    },
 			getMsg () {
 				this.ajaxGet(question.showById + '/' + this.problem_id, res=>{
-					this.title = res.data.title
-					this.content = this.removeHtml(res.data.content)
+					console.log(res)
+					this.detailSetting.title = res.data.title
+					this.detailSetting.date = res.data.updatedAt
+					this.detailSetting.content = this.removeHtml(res.data.content)
 					this.form.title = res.data.title
 					this.form.content = res.data.content
 				})
@@ -70,6 +78,9 @@ return html
 						this.getMsg()
 					})
 				})
+			},
+			goBack () {
+				this.$router.go(-1)
 			}
 		},
 		mounted() {
@@ -78,6 +89,12 @@ return html
 		},
 		components: {
 			popForm
+		},
+		// 处理时间可以使用过滤器
+		filters: {
+			moment (date) {
+				return moment(date).startOf('minutes').fromNow()
+			}
 		}
 	}
 </script>

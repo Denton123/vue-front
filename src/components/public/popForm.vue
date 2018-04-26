@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="form" v-if="formShow">
+        <div class="pop" v-if="formShow" @click.capture="hidePop">
             <div class="form-wrap">
                 <span @click="handleClose">
                     <Icon type="close" class="form-icon-close"/>
                 </span>
-                <h1 class="form-title mr-bottom">{{`修改${theme}`}}</h1>
+                <h1 class="form-title mr-bottom">{{`${theme}`}}</h1>
                 <el-form 
                     ref="form"
                     :model="form"
@@ -14,19 +14,20 @@
                     <div
                     :key="index"
                     v-for="(item, index) in editComponent">
+
                     <!-- 文本 -->
                         <el-form-item 
-                            :prop="form.title"
+                            :prop="item.name"
                             v-if="item.type==='text'"
                             :label="item.label">
                             <el-input 
-                                v-model="form.title"
+                                v-model="form[item.name]"
                                 :placeholder="item.placeholder" />
                         </el-form-item>
 
                         <!-- 编辑器 -->
                         <el-form-item 
-                            :prop="form.content"
+                            :prop="item.name"
                             v-if="item.type==='editor'"
                             :label="item.label">
                             <el-tooltip class="item" effect="dark" :content="showInp ? '展开工具栏' : '收起工具栏'" placement="bottom">
@@ -38,10 +39,10 @@
                                 </a>   
                             </el-tooltip>
                             <el-input v-if="showInp" 
-                                v-model="form.content" 
+                                v-model="form[item.name]" 
                                 :placeholder="item.placeholder" />
                              <quill-editor v-else 
-                                v-model="form.content" 
+                                v-model="form[item.name]" 
                                 :placeholder="item.placeholder"/>
                         </el-form-item>
                     </div>
@@ -70,7 +71,9 @@ export default {
     form: {},
     editComponent: {
         type: Array,
-        default: []
+        default : () => {
+            return []
+        }
     }
   },
   methods: {
@@ -78,7 +81,7 @@ export default {
         this.showInp = !this.showInp
     },
     handleClose() {
-        this.$emit('editQuestion')
+        this.$emit('handleClose')
     },
     submitForm(formName) {
         this.$refs[formName].validate((valid) => {
@@ -89,6 +92,11 @@ export default {
                 return false;
             }
         })
+    },
+    hidePop (event) {
+        if (event.target.className.indexOf('pop')  !== -1) {
+            this.$emit('handleClose')
+        }
     }
   },
   mounted () {
@@ -97,7 +105,6 @@ export default {
         rules[item.name] = item.rules
     })
     this.rules = rules
-    console.log(this.form);
   },
   computed: {
     
@@ -108,7 +115,7 @@ export default {
 </script>
 
 <style lang="scss">
-.form{
+.pop{
     position: fixed;
     width:100%;
     height: 100%;
@@ -116,6 +123,8 @@ export default {
     top:0;
     left:0;
     z-index:2000;
+}
+.form{
     &-title{
         text-align: center;
         font-weight: normal;

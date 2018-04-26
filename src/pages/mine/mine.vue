@@ -102,7 +102,7 @@ import myChild from './mine-child.vue'
 	      		this.$router.push('/mine/edit')
 	      	},
 	      	toMine () {
-	      		this.$router.push('/mine')
+	      		this.$router.push('/mine/model/dynamic')
 	      	},
 	      	changeInfo () {
 	      		this.getUser()
@@ -126,7 +126,6 @@ import myChild from './mine-child.vue'
 		},
 		mounted() {
 			this.getUser()
-			console.log(this.imageUrl);
 		},
 		components: {
 			myChild

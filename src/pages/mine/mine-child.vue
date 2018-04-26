@@ -6,9 +6,12 @@
 		    		<component
 		    			:is="model.cardComponent"
 		    			:listData="listData"
-		    			:tabName = "model.label"
-		    			:blankIcon = "model.blankIcon"
+		    			:model="model"
 		    			/>
+					<pagination
+						v-if="listData.length > 0"
+						:pageData="pageData"
+						@handleCurrentChange="handleCurrentChange" />
 		    	</el-tab-pane>
 			</el-tabs>
 		</div>
@@ -17,6 +20,7 @@
 
 <script>
 import message from './message.js'
+import pagination from '../../components/public/pagination'
 	export default {
 		data () {
 			let obj = {}
@@ -24,23 +28,52 @@ import message from './message.js'
 			return {
 				activeName: '',
 				models: obj,
-				listData: ''
+				listData: {},
+				modelFlag: this.$route.params.model,
+				pageData: {
+					currentPage: 1,
+					pageSize: 1,
+					total: 1
+				}
 			}
 		},
 		props: {
 			
 		},
 		methods: {
+			// 点击tab触发
 			handleClick (tab, event) {
-				this.ajaxGet('api/' + tab.name + '/showByUser/' + id, res=> {
-					console.log(res);
-					this.listData = res.data
-					console.log(this.listData.length);
+				this.listData = {}
+				this.getMsg(tab.name)
+				this.$router.replace({
+					params: {
+						model: tab.name
+					}
 				})
+			},
+			// 获取数据
+			getMsg(tabName, page = 1) {
+				this.ajaxGet(`api/${tabName}/showByUser/${id}?page=${page}`, res=> {
+					console.log(res);
+					this.listData = res.data.data
+					this.pageData.currentPage = res.data.currentPage
+					this.pageData.pageSize = res.data.pageSize
+					this.pageData.total = res.data.total
+				})
+			},
+			// 切换页数
+			handleCurrentChange (val) {
+				this.getMsg(this.modelFlag, val)
 			}
 		},
 		mounted() {
-
+			this.activeName = this.modelFlag
+			this.getMsg(this.modelFlag)
+		},
+		watch: {
+		},
+		components: {
+			pagination
 		}
 	}
 </script>

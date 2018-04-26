@@ -1,10 +1,12 @@
-import state  from './state.js'
-import getters  from './getters.js'
+import common from './common/modules.js'
+
 import Vuex from 'vuex'
 import Vue from 'vue'
 Vue.use(Vuex)
+
 const store = new Vuex.Store({
-	state,
-	getters
+	modules: {
+		common
+	}
 })
 export default store

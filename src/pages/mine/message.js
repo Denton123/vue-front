@@ -4,8 +4,7 @@ export default [
 		label: '动态',
 		name: 'dynamic',
 		cardComponent: card,
-		url: question.list,
-		blankIcon: 'el-icon-news'
+		blankIcon: 'el-icon-news',
 	},
 	{
 		label: '回答',
@@ -17,14 +16,15 @@ export default [
 		label: '提问',
 		name: 'question',
 		cardComponent: card,
-		blankIcon: 'el-icon-document'
+		blankIcon: 'el-icon-document',
+        popFlag: true
 	},
 	{
 		label: '文章',
 		name: 'article',
 		cardComponent: card,
-		url: article.list,
-		blankIcon: 'el-icon-news'
+		blankIcon: 'el-icon-news',
+        popFlag: true
 	},
 	{
 		label: '专栏',
@@ -36,6 +36,7 @@ export default [
 		label: '想法',
 		name: 'idea',
 		cardComponent: card,
-		blankIcon: 'el-icon-loading'
+		blankIcon: 'el-icon-loading',
+        popFlag: true
 	}
 ]

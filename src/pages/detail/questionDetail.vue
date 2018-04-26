@@ -1,13 +1,20 @@
+/**
+ * 
+ * 问题详情组件
+ * @author 舒丹彤 
+ * @date 2018/04/26
+ * 
+ */
 <template>
 	<div class="question">
 		<div class="question-header">
 			<h1>
 				<i class="el-icon-question" />
 				{{detailSetting.title}}
-				<i class="el-icon-edit" @click="editQuestion">修改</i>
+				<i class="el-icon-edit" @click="handleClose">修改</i>
 				<el-button class="fl-r" @click="goBack" type="primary">返回</el-button>
-				<span>{{moment(detailSetting.date).startOf('minutes').fromNow()}}</span>
-			</h1>
+				
+			</h1> 
 			 <el-collapse accordion v-if="detailSetting.content!== ''">
 				<el-collapse-item>
 					<template slot="title">
@@ -16,12 +23,13 @@
 					<div>{{detailSetting.content}}</div>
 				</el-collapse-item>
 			</el-collapse>
+			<span class="question-date">{{`${this.momentchange(detailSetting.date).startOf('minutes').fromNow()}${dataFlag}`}}</span>
 			<popForm 
 				v-if="show"
 				:theme="theme"
 				:form="form"
 				:editComponent="editComponent"
-				@editQuestion="editQuestion"
+				@handleClose="handleClose"
 				@submit="submit(form)"/>
 		</div>
 	</div>
@@ -30,7 +38,6 @@
 <script>
 import popForm from '../../components/public/popForm'
 import msg from '../formMsg'
-import moment from 'moment'
 	export default {
 		data () {
 			return {
@@ -40,40 +47,44 @@ import moment from 'moment'
 					date: ''
 				},
 				show: false,
-				theme: '问题',
+				theme: '修改问题',
+				dataFlag: '发布',
 				form: {
 					title: '',
 					content: ''
 				},
-				editComponent: msg.editComponent,
+				editComponent: msg.questionComponent,
 				problem_id: this.$route.params.id
 			}
 		},
 		methods: {
 			// 处理时间
-			moment (data) {
-				return moment(data)
-			},
+			// moment (data) {
+			// 	return moment(data)
+			// },
 		    removeHtml(html) {
 		    	return html.replace(/<.*?>/ig,"")
 		    },
 			getMsg () {
 				this.ajaxGet(question.showById + '/' + this.problem_id, res=>{
-					console.log(res)
-					this.detailSetting.title = res.data.title
-					this.detailSetting.date = res.data.updatedAt
-					this.detailSetting.content = this.removeHtml(res.data.content)
-					this.form.title = res.data.title
-					this.form.content = res.data.content
+					let data = res.data
+					this.detailSetting.title = data.title
+					this.detailSetting.date = data.updatedAt
+					this.detailSetting.content = this.removeHtml(data.content)
+					this.form.title = data.title
+					this.form.content = data.content
+					this.dataFlag = (data.date === data.updatedAt) ? '发布' : '更新'
 				})
 			},
-			editQuestion() {
+			handleClose() {
 				this.show = !this.show
 			},
 			submit(form) {
+				console.log(form);
 				this.ajaxPost(question.updateById + '/' + this.problem_id, form, res => {
 					return new Promise((resolve, reject)=>{
-						resolve(this.editQuestion())
+						this.handleClose()
+						resolve()
 					}).then(res=>{
 						this.getMsg()
 					})
@@ -85,16 +96,16 @@ import moment from 'moment'
 		},
 		mounted() {
 			this.getMsg()
-			console.log(this.form);
+			console.log(this.$route);
 		},
 		components: {
 			popForm
 		},
 		// 处理时间可以使用过滤器
 		filters: {
-			moment (date) {
-				return moment(date).startOf('minutes').fromNow()
-			}
+			// moment (date) {
+			// 	return moment(date).startOf('minutes').fromNow()
+			// }
 		}
 	}
 </script>

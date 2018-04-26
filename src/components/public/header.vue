@@ -1,7 +1,7 @@
 <template>
 	<div class="Header-inner">
         <div class="Header-logo">
-            <h1>南飞</h1>
+            <router-link to="/index" tag="h2" exact>南飞</router-link>
         </div>
         <div class="Header-mine">
                 <el-dropdown>
@@ -34,7 +34,7 @@
 		},
 		methods: {
 			change () {
-				this.$router.push('/mine')
+				this.$router.push('/mine/model/dynamic')
 			},
 			logout () {
 				this.ajaxGet(users.logout, res => {
@@ -57,7 +57,7 @@
 		},
         mounted () {
             this.getUser()
-            console.log(this.imageUrl);
+            // console.log(this.imageUrl);
         }
 	}
 </script>

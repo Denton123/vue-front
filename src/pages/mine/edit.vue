@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   data () {
     return {
@@ -68,10 +69,12 @@ export default {
     }
   },
   mounted () {
-    console.log(this.rules);
+    console.log(this.$store.state.common.type);
+  },
+  beforeRouteEnter (to, from, next) {
+    console.log(to)
   },
   computed: {
-    
   },
   components: {
   }

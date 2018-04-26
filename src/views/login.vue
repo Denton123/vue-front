@@ -62,7 +62,7 @@ import api from '../utils/api.js'
                                 // let user = JSON.stringify(res.data.id)
                                 localStorage.setItem('user', res.data.id)
                                 setTimeout(()=>{
-                                    this.$router.push('/mine')
+                                    this.$router.push('/index')
                                 }, 3500)
                             } else {
                                 this.$message.error('用户名或者密码错误')

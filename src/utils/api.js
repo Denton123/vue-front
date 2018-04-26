@@ -16,6 +16,7 @@ global.question = {
 	showById: host + '/question/showById',
 	showByUser: host + '/question/showByUser',
 	updateById: host + '/question/updateById',
+	store: host + '/question/store',
 }
 global.article = { 
 	list: host + '/article/list',

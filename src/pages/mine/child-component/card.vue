@@ -1,10 +1,10 @@
 <template>
 	<div class="mine-card">
 		<el-card :body-style="{ padding: '0px' }" v-if="listData.length > 0" >
-			<h3 class="mine-card-tag">{{`我的${tabName}`}}</h3>
+			<h3 class="mine-card-tag">{{`我的${model.label}`}}</h3>
 			<div v-for="(item, index) in listData" class="mine-card-wrap mr-bottom">
 				<h2 class="mine-card-title">
-					<router-link :to="`question/${item.id}`">
+					<router-link :to="`/${model.name}/${item.id}`" exact>
 						{{item.title}}
 					</router-link>
 				</h2>
@@ -24,8 +24,8 @@
 		</el-card>
 		<el-card :body-style="{ padding: '0px' }" v-else>
 			<div class="mine-card-blank">
-				<i :class="blankIcon" />
-				<p>{{`还没有${tabName}`}}</p>
+				<i :class="model.blankIcon" />
+				<p>{{`还没有${model.label}`}}</p>
 			</div>
 		</el-card>
 	</div>
@@ -42,7 +42,8 @@
 		props: {
 			listData: {},
 			tabName: '',
-			blankIcon: ''
+			blankIcon: '',
+			model: {}
 		},
 		methods: {
 		},

@@ -2,6 +2,8 @@
 
 import Vue from 'vue'
 import axios from 'axios'
+import moment from 'moment'
+moment.lang('zh-cn')
 
 export default {
 	install (Vue, options) {
@@ -22,6 +24,10 @@ export default {
 			.catch(err => {
 				console.log(err);
 			})
+		},
+		// moment
+		Vue.prototype.momentchange = (data) => {
+			return moment(data)
 		}
 	}
 }

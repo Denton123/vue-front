@@ -50,7 +50,6 @@ export default {
   methods: {
     handleClick (model) {
         if (model.popFlag) {
-            console.log(popFormMsg);
             this.popData.show = true
             this.popData.theme = `写下你的${model.label}`
             let coms = model.name + 'Component'

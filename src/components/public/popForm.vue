@@ -17,17 +17,15 @@
 
                     <!-- 文本 -->
                         <el-form-item 
-                            :prop="item.name"
                             v-if="item.type==='text'"
                             :label="item.label">
-                            <el-input 
+                            <el-input
                                 v-model="form[item.name]"
                                 :placeholder="item.placeholder" />
                         </el-form-item>
 
                         <!-- 编辑器 -->
                         <el-form-item 
-                            :prop="item.name"
                             v-if="item.type==='editor'"
                             :label="item.label">
                             <el-tooltip class="item" effect="dark" :content="showInp ? '展开工具栏' : '收起工具栏'" placement="bottom">
@@ -42,9 +40,21 @@
                                 v-model="form[item.name]" 
                                 :placeholder="item.placeholder" />
                              <quill-editor v-else 
-                                v-model="form[item.name]" 
+                                v-model="form[item.name]"
+                                :file-list="form[item.name]"
                                 :placeholder="item.placeholder"/>
                         </el-form-item>
+
+                        <!-- 上传图片 -->
+                        <el-form-item
+                            v-if="item.type==='upload'"
+                            :label="item.label">
+                            <component
+                                @put="put"
+                                v-model="form[item.name]"
+                                :is="item.uploadComponent"/>
+                        </el-form-item>
+
                     </div>
                     <!-- 操作按钮 -->
                    <el-form-item>
@@ -64,6 +74,7 @@ export default {
         showInp: true,
         formShow: true,
         rules: {},
+        test: ''
     }
   },
   props: {
@@ -97,6 +108,9 @@ export default {
         if (event.target.className.indexOf('pop')  !== -1) {
             this.$emit('handleClose')
         }
+    },
+    put(val) {
+        this.test = val
     }
   },
   mounted () {
@@ -106,7 +120,7 @@ export default {
     })
     this.rules = rules
   },
-  computed: {
+  computed: { 
     
   },
   components: {

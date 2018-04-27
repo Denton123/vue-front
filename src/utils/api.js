@@ -21,4 +21,9 @@ global.question = {
 global.article = { 
 	list: host + '/article/list',
 }
+
+global.idea = { 
+	store: host + '/idea/store',
+	index: host + '/idea/index',
+}
 global.id= localStorage.getItem('user')

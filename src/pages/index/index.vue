@@ -6,17 +6,31 @@
  * 
  */
 <template>
-    <div>
-        <tag />
+    <div class="index">
+        <div class="index-left-tag">
+            <tag
+                :models="tagModels" />
+        </div>
+        <div class="index-right-tag">
+            <tag
+                :models="extractModels"
+                :liClass="liClass" />
+        </div>
+        
     </div>
 </template>
 
 <script>
 import tag from './components/tag.vue'
+import msg from '../mine/message'
 export default {
   data () {
+    let obj = {}
+    let extractObj = {}
     return {
-      
+        tagModels: Object.assign(obj, msg.tag),
+        extractModels: Object.assign(extractObj, msg.extractTag),
+        liClass: 'liClass'
     }
   },
   methods: {
@@ -33,25 +47,19 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-.el-container{
-  width: 100%;
-  height: 100%;
-  background: #f6f6f6;
-}
-.el-header{
-    padding: 0;
-    background: #fff;
-}
-    .Header{
-        width: 100%;
-        line-height: 50px;
-        box-shadow: 0 1px 3px rgba(26,26,26,.1);
-    }
-    .Main{
-        width: 60%;
-        padding: 20px 0px;
-        margin: 0 auto;
+<style lang="scss" scoped>
+    .index{
+        display: flex;
+        overflow: hidden;
+        &-left-tag{
+            width: 65%;
+            margin-right: 5%;
+        }
+        &-right-tag {
+            width: calc(100% - 70%);
+        }
+        .liClass{
+            background: red;
+        }
     }
 </style>

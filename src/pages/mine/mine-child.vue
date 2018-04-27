@@ -7,6 +7,7 @@
 		    			:is="model.cardComponent"
 		    			:listData="listData"
 		    			:model="model"
+		    			:hasLoading="hasLoading"
 		    			/>
 					<pagination
 						v-if="listData.length > 0"
@@ -24,11 +25,12 @@ import pagination from '../../components/public/pagination'
 	export default {
 		data () {
 			let obj = {}
-			Object.assign(obj, message)
+			Object.assign(obj, message.tag)
 			return {
 				activeName: '',
 				models: obj,
 				listData: {},
+				hasLoading: false,
 				modelFlag: this.$route.params.model,
 				pageData: {
 					currentPage: 1,
@@ -53,12 +55,15 @@ import pagination from '../../components/public/pagination'
 			},
 			// 获取数据
 			getMsg(tabName, page = 1) {
+				this.hasLoading = true
 				this.ajaxGet(`api/${tabName}/showByUser/${id}?page=${page}`, res=> {
-					console.log(res);
-					this.listData = res.data.data
-					this.pageData.currentPage = res.data.currentPage
-					this.pageData.pageSize = res.data.pageSize
-					this.pageData.total = res.data.total
+					if (res.data) {
+						this.hasLoading = false
+						this.listData = res.data.data
+						this.pageData.currentPage = res.data.currentPage
+						this.pageData.pageSize = res.data.pageSize
+						this.pageData.total = res.data.total
+					}
 				})
 			},
 			// 切换页数

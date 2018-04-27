@@ -13,6 +13,7 @@ Vue.use(require('vue-moment'))
 import 'iview/dist/styles/iview.css'
 import 'element-ui/lib/theme-chalk/index.css';
 import '../../static/sass/common.sass'
+
 Vue.use(func)
 
 import VueQuillEditor from 'vue-quill-editor'

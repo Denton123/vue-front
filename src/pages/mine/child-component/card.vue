@@ -1,6 +1,9 @@
 <template>
 	<div class="mine-card">
-		<el-card :body-style="{ padding: '0px' }" v-if="listData.length > 0" >
+		<el-card 
+			:body-style="{ padding: '0px' }" 
+			v-if="listData.length > 0"
+			v-loading="hasLoading">
 			<h3 class="mine-card-tag">{{`我的${model.label}`}}</h3>
 			<div v-for="(item, index) in listData" class="mine-card-wrap mr-bottom">
 				<h2 class="mine-card-title">
@@ -32,7 +35,6 @@
 </template>
 
 <script> 
-
 	export default {
 		data () {
 			return {
@@ -43,11 +45,14 @@
 			listData: {},
 			tabName: '',
 			blankIcon: '',
-			model: {}
+			model: {},
+			hasLoading: false
 		},
 		methods: {
 		},
 		mounted() {
+		},
+		components: {
 		}
 	}
 </script>

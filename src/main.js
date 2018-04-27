@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './vuex/index'
 
-
 require('./config/init.js')
 router.beforeEach((to, from, next) => {
 	if (to.meta.requiresAuth && store.state.type) {

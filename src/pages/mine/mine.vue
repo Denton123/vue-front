@@ -23,7 +23,7 @@
 						:show-file-list="false"
 						:on-success="handleAvatarSuccess"
 						:before-upload="beforeAvatarUpload">
-						<Avatar
+							<Avatar
 							:src="imageUrl"
 							icon="person" 
 							size="large"/>

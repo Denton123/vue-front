@@ -5,6 +5,7 @@ import edit from '@/pages/mine/edit'
 import child from '@/pages/mine/mine-child'
 import questionDetail from '@/pages/detail/questionDetail'
 import index from '@/pages/index/index'
+import one from '@/pages/one/one'
 
 let routes = [
     {
@@ -30,6 +31,10 @@ let routes = [
                   component: edit,
                 }
               ]
+            },
+            {
+              path: '/one',
+              component: one,
             },
             {
               path: '/:model/:id',

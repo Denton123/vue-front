@@ -1,3 +1,5 @@
+import onPicUpload from './one/components/onePicUpload'
+
 export default {
 	questionComponent: [
 		{
@@ -31,20 +33,23 @@ export default {
 			rules: null
 		}
 	],
+	// 一个
 	ideaComponent: [
 		{
 			type: 'text',
-			label: 'hhhhhh',
-			placeholder: '问题标题',
-			name: 'title',
+			label: '一句话',
+			placeholder: '一句话',
+			name: 'word',
 			rules: [{required: true, trigger: 'blur', message: '在5到19个数'}]
 		},
 		{
-			type: 'editor',
+			type: 'upload',
 			label: '内容',
 			placeholder: '问题内容',
-			name: 'content',
-			rules: null
+			name: 'pic',
+			modelname: 'idea',
+			rules: null,
+			uploadComponent: onPicUpload
 		}
 	],
 }

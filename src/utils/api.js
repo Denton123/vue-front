@@ -25,5 +25,6 @@ global.article = {
 global.idea = { 
 	store: host + '/idea/store',
 	index: host + '/idea/index',
+	uploadImg: host + '/idea/uploadImg',
 }
 global.id= localStorage.getItem('user')

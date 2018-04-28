@@ -7,7 +7,7 @@
  */
 <template>
     <el-carousel :interval="4000" type="card" height="200px">
-        <el-carousel-item v-for="item in data" :key="item">
+        <el-carousel-item v-for="(item,index) in data" :key="item.id">
              <img :src="`/uploadImgs/${item.pic}`" alt="">
         </el-carousel-item>
     </el-carousel>
@@ -25,7 +25,7 @@ export default {
   methods: {
     get() {
         this.ajaxGet(idea.index, res => {
-            console.log(res);
+          console.log(res);
             this.data = res.data
         })
     }

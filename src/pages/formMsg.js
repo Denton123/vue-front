@@ -49,7 +49,8 @@ export default {
 			name: 'pic',
 			modelname: 'idea',
 			rules: null,
-			uploadComponent: onPicUpload
+			uploadComponent: onPicUpload,
+			rules: [{required: true, trigger: 'blur'}]
 		}
 	],
 }

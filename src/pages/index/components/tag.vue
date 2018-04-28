@@ -23,11 +23,12 @@
         </ul>
         <popForm
             v-if="popData.show" 
-            :theme="popData.theme"
+            :theme="`写下你的${popData.theme}`"
             :form="form"
+            :rules="rules"
+            :action="action"
             :editComponent="addComponent"
             @handleClose="handleClose"
-            @put="put"
             @submit="submit(form)"  />
     </div>
 </template>
@@ -48,15 +49,18 @@ export default {
             theme: ''
         },
         addComponent: [],
-        form: {}
+        form: {},
+        action: '',
+        rules: {}
     }
   },
   methods: {
     handleClick (model) {
         if (model.popFlag) {
             this.popData['show'] = true
-            this.popData['theme'] = `写下你的${model.label}`
+            this.popData['theme'] = model.label
             this.popData['name'] = model.name
+            this.action = global[model.name].uploadImg
             let component = `${model.name}Component`
             Object.keys(popFormMsg).forEach(v => {
                 if (v == component) {
@@ -69,6 +73,9 @@ export default {
                 this.$router.push(`/${model.toUrl}`)
             }
         }
+        this.addComponent.forEach(item => {
+            this.rules[item.name] = item.rules
+        })
     },
     handleClose () {
         this.popData.show = !this.popData.show
@@ -78,25 +85,18 @@ export default {
         let name = this.popData['name']
         this.ajaxPost(global[name].store + '/' + id, form, res => {
             console.log(res);
-            // res.data === 'success' ?  this.$message.success('问题发布成功') : this.$message.error('问题发布失败');
-            // this.handleClose()
+            res.data === 'success' ?  this.$message.success(`${this.popData['theme']}发布成功`) : this.$message.error(`${this.popData['theme']}发布失败`);
+            this.handleClose()
         })
     },
     // 抽出form的field
     extractObj (obj) {
         let form = {}
         obj.forEach(i => {
-            if (i.name === 'pic') {
-                form[i.name] = 'fc891dde2b40257b7102c9f1cd8c0976.jpg'
-            } else {
-                form[i.name] = ''
-            }
+            form[i.name] = ''
         })
         this.form = form
     },
-    put(val) {
-        console.log(val);
-    }
   },
   mounted () {
   },

@@ -13,7 +13,8 @@
             :on-remove="handleRemove"
             :on-success="handleAvatarSuccess"
             list-type="picture">
-            <el-button v-if="show" size="small" type="primary">点击上传</el-button>
+            <img :src="src" alt="" v-if="src">
+            <el-button v-else size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
     </div>
@@ -22,12 +23,13 @@
 <script>
 export default {
     props: {
-        file_list: []
+        file_list: [],
+        src: ''
     },
   data () {
     return {
         show: true,
-        action: idea.store + '/' + id
+        action: 'api/post'
     }
   },
     methods: {
@@ -36,12 +38,10 @@ export default {
             console.log(file, fileList);
         },
         handleAvatarSuccess(res, file, fileList) {
-            console.log(res);
-            console.log(file);
-            this.$emit('put', file.raw.name)
             if (file.raw) {
                 this.show = false
             }
+            this.$store.state.common.file = file.raw
         }
   },
   mounted () {

@@ -1,5 +1,6 @@
 const state = {
 	type: 6,
-	userInfo: {}
+	userInfo: {},
+	file: {}
 }
 export default state

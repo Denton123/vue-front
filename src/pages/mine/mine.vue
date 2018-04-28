@@ -76,6 +76,7 @@ import myChild from './mine-child.vue'
 				this.uploadApi = users.update + '/' + userId + '/' + 'avatar'
 				this.uploadBgApi = users.update + '/' + userId + '/' + 'bg'
 				this.ajaxGet(users.findUser + '/' + userId, res=> {
+					console.log(res);
 					this.userName = res.data.name
 					this.des = res.data.introduction
 					if (res.data.avatar !== null) {

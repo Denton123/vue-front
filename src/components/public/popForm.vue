@@ -49,10 +49,23 @@
                         <el-form-item
                             v-if="item.type==='upload'"
                             :label="item.label">
-                            <component
-                                @put="put"
+                            <!-- <component
+                                :src="`/uploadImgs/${form[item.name]}`"
                                 v-model="form[item.name]"
-                                :is="item.uploadComponent"/>
+                                :is="item.uploadComponent"/> -->
+                            <el-upload
+                                class="uploadImg"
+                                :action="action"
+                                :show-file-list="false"
+                                :before-upload="beforeImgUpload"
+                                :on-success="handleAvatarSuccess"
+                               >
+                                <img 
+                                    v-if="form[item.name]" 
+                                    :src="'/uploadImgs/' + form[item.name]"
+                                    class="uploadImg-img">
+                               <i v-else class="el-icon-plus uploadImg-icon"></i>
+                            </el-upload>    
                         </el-form-item>
 
                     </div>
@@ -73,8 +86,7 @@ export default {
     return {
         showInp: true,
         formShow: true,
-        rules: {},
-        test: ''
+        // rules: {},
     }
   },
   props: {
@@ -85,7 +97,9 @@ export default {
         default : () => {
             return []
         }
-    }
+    },
+    action: '',
+    rules: {}
   },
   methods: {
     toggleTool() {
@@ -109,16 +123,29 @@ export default {
             this.$emit('handleClose')
         }
     },
-    put(val) {
-        this.test = val
+    handleAvatarSuccess(res, file, fileList){
+        console.log(res);
+        if (res.status == 1) {
+            this.form['pic'] = res.image_path
+        }else{
+            this.$message.error('上传图片失败！');
+        }
+    },
+    beforeImgUpload (file) {
+        console.log(file.size);
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            this.$message.error('上传头像图片大小不能超过 2MB')
+        }
+        return isLt2M
     }
   },
   mounted () {
-    var rules = {}
-    this.editComponent.forEach(item => {
-        rules[item.name] = item.rules
-    })
-    this.rules = rules
+    // var rules = {}
+    // this.editComponent.forEach(item => {
+    //     rules[item.name] = item.rules
+    // })
+    // this.rules = rules
   },
   computed: { 
     
@@ -128,7 +155,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .pop{
     position: fixed;
     width:100%;
@@ -137,6 +164,7 @@ export default {
     top:0;
     left:0;
     z-index:2000;
+    
 }
 .form{
     &-title{
@@ -162,5 +190,39 @@ export default {
         top: 20px;
         right: 20px;
     }
+    
 }
+.uploadImg{
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #d9d9d9;
+    float: left;
+    border-radius: 6px;
+    cursor: pointer;
+    &:hover{
+        border-color: #20a0ff;
+    }
+    &-img{
+        width: 150px;
+        height: 150px;
+    }
+    &-icon{
+        font-size: 28px;
+        color: #8c939d;
+        width: 150px;
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+    }
+}
+.uploadImg {
+        width: 150px;
+        height: 150px;
+    }
+.el-upload{
+        width: 150px;
+        height: 150px;
+        border: 2px dotted #409eff91;
+        float: left;
+    }
 </style>

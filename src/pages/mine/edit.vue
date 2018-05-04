@@ -55,8 +55,7 @@ export default {
         this.editForm['sex'] = (this.editForm['sex'] === '女') ? 'female' : 'male'
         this.$refs[formName].validate((valid) => {
             if(valid) {
-                var userId = localStorage.getItem('user')
-                this.ajaxPost(users.update + '/' + userId + '/info', this.editForm, res=>{
+                this.ajaxPost(users.update + '/' + global.id + '/info', this.editForm, res=>{
                     console.log(res);
                     if (res.data['0'] === 1) {
                         this.$message.success('修改成功')

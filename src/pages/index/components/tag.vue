@@ -81,9 +81,8 @@ export default {
         this.popData.show = !this.popData.show
     },
     submit (form) {
-        console.log(form);
         let name = this.popData['name']
-        this.ajaxPost(global[name].store + '/' + id, form, res => {
+        this.ajaxPost(global[name].store + '/' + global.id, form, res => {
             console.log(res);
             res.data === 'success' ?  this.$message.success(`${this.popData['theme']}发布成功`) : this.$message.error(`${this.popData['theme']}发布失败`);
             this.handleClose()

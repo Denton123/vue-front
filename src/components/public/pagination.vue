@@ -26,6 +26,7 @@
 		methods: {
 			// 当前页数改变时
 			handleCurrentChange (val) {
+				console.log(val);
 				this.$emit('handleCurrentChange', val)
 			}
 		}

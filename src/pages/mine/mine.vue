@@ -72,10 +72,10 @@ import myChild from './mine-child.vue'
 		},
 		methods: {
 			getUser() {
-				var userId = localStorage.getItem('user')
-				this.uploadApi = users.update + '/' + userId + '/' + 'avatar'
-				this.uploadBgApi = users.update + '/' + userId + '/' + 'bg'
-				this.ajaxGet(users.findUser + '/' + userId, res=> {
+				let id = global.id
+				this.uploadApi = users.update + '/' + id + '/' + 'avatar'
+				this.uploadBgApi = users.update + '/' + id + '/' + 'bg'
+				this.ajaxGet(users.findUser + '/' + id, res=> {
 					console.log(res);
 					this.userName = res.data.name
 					this.des = res.data.introduction

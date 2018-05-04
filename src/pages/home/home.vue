@@ -12,7 +12,7 @@
                 <my-header />
             </el-header>
             <el-main class="Main">
-                <router-view />
+                <router-view/>
             </el-main>
         </el-container>
     </div>
@@ -24,7 +24,6 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      
     }
   },
   methods: {
@@ -42,7 +41,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped> 
 .el-container{
   width: 100%;
   height: 100%;

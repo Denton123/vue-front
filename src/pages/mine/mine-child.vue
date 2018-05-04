@@ -56,8 +56,9 @@ import pagination from '../../components/public/pagination'
 			// 获取数据
 			getMsg(tabName, page = 1) {
 				this.hasLoading = true
-				this.ajaxGet(`api/${tabName}/showByUser/${id}?page=${page}`, res=> {
+				this.ajaxGet(`api/${tabName}/showByUser/${global.id}?page=${page}`, res=> {
 					if (res.data) {
+						console.log(res.data);
 						this.hasLoading = false
 						this.listData = res.data.data
 						this.pageData.currentPage = res.data.currentPage
@@ -68,6 +69,7 @@ import pagination from '../../components/public/pagination'
 			},
 			// 切换页数
 			handleCurrentChange (val) {
+				console.log(this.modelFlag);
 				this.getMsg(this.modelFlag, val)
 			}
 		},
@@ -76,6 +78,11 @@ import pagination from '../../components/public/pagination'
 			this.getMsg(this.modelFlag)
 		},
 		watch: {
+			'$route': {
+				handler: function (nv) {
+					this.modelFlag = nv.params.model
+				}
+			}
 		},
 		components: {
 			pagination

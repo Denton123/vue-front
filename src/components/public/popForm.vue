@@ -180,9 +180,7 @@ export default {
         position: absolute;
         background:white;
         box-shadow:1px 1px 50px rgba(0,0,0,.3);
-        border-radius:2px;  
-        // height:50%;
-        // max-height: 50%;
+        border-radius:2px;
     }
     &-icon-close{
         font-size: 20px;

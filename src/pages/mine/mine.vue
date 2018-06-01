@@ -100,7 +100,7 @@ import myChild from './mine-child.vue'
 	        	this.imageUrl = '/uploadImgs/' + res.avatar
 	      	},
 	      	toEdit () {
-	      		this.$router.push('/mine/edit')
+	      		this.$router.push('/edit/edit')
 	      	},
 	      	toMine () {
 	      		this.$router.push('/mine/model/dynamic')

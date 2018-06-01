@@ -12,7 +12,10 @@
                 <my-header />
             </el-header>
             <el-main class="Main">
-                <router-view/>
+                <!-- keep-alive保存状态 -->
+                <keep-alive>
+                    <router-view/>
+                </keep-alive>
             </el-main>
         </el-container>
     </div>
@@ -22,21 +25,19 @@
 import myHeader from '../../components/public/header.vue'
 export default {
   name: 'HelloWorld',
-  data () {
-    return {
-    }
-  },
-  methods: {
-
-  },
-  mounted () {
-  },
-  computed: {
-    
-  },
-  components: {
-    myHeader,
-  }
+    data () {
+        return {
+        }
+    },
+    methods: {
+    },
+    mounted () {
+    },
+    computed: {
+    },
+    components: {
+        myHeader,
+    } 
 }
 </script>
 
@@ -60,5 +61,6 @@ export default {
         width: 60%;
         padding: 20px 0px;
         margin: 0 auto;
+        overflow: hidden;
     }
 </style>

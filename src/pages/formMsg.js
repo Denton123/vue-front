@@ -39,7 +39,7 @@ export default {
 			type: 'text',
 			label: '一句话',
 			placeholder: '一句话',
-			name: 'word',
+			name: 'title',
 			rules: [{required: true, trigger: 'blur', message: '在5到19个数'}]
 		},
 		{
@@ -49,7 +49,25 @@ export default {
 			name: 'pic',
 			modelname: 'idea',
 			rules: null,
-			uploadComponent: onPicUpload,
+			rules: [{required: true, trigger: 'blur'}]
+		}
+	],
+	// 音乐
+	musicComponent: [
+		{
+			type: 'text',
+			label: '类型',
+			placeholder: '类型',
+			name: 'title',
+			rules: [{required: true, trigger: 'blur', message: '在5到19个数'}]
+		},
+		{
+			type: 'upload',
+			label: '图片',
+			placeholder: '问题内容',
+			name: 'pic',
+			modelname: 'music',
+			rules: null,
 			rules: [{required: true, trigger: 'blur'}]
 		}
 	],

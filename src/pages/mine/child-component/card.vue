@@ -20,8 +20,9 @@
 					<h2 class="mine-card-user-username">{{item.User.name}}</h2>
 				</div>
 				<div class="mine-card-operate">
-					<time class="mine-card-operate-time">{{item.date|moment("YYYY-MM-DD")}}</time>
+					<time class="mine-card-operate-time"> {{item.date|moment("YYYY-MM-DD")}}</time>
 					<el-button type="text" class="mine-card-operate-btn">操作按钮</el-button>
+					
 				</div>
 			</div>
 		</el-card>

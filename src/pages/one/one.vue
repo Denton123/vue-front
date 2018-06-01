@@ -8,7 +8,7 @@
 <template>
     <div class="one">
         <h2 class="one-header">We Had Today</h2>
-        <slide />
+        <slide :infoData="infoData" :slideParams="slideParams" />
     </div>
 </template>
 
@@ -17,13 +17,25 @@ import slide from './components/slideShow.vue'
 export default {
     props: {
     },
-  data () {
-    return {
-    }
-  },
-  methods: {
-  },
+    data () {
+        return {
+            infoData: {},
+            slideParams: {
+                height: '450px',
+                indicator: 'none'
+            }
+        }
+    },
+    methods: {
+        getMsg () {
+            this.ajaxGet(idea.index, res => {
+                this.infoData = res.data.data
+            })
+        }
+    },
   mounted () {
+    this.getMsg()
+    console.log(this.$root);
   },
   computed: {
     
@@ -35,12 +47,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .one{
+.one{
     &-header{
         padding: 20px;
         background: #3e3f40;
         color: #fff;
         border-radius: 5px;
     }
-    }
+}
 </style>

@@ -27,4 +27,11 @@ global.idea = {
 	index: host + '/idea/index',
 	uploadImg: host + '/idea/uploadImg',
 }
+
+global.music = { 
+	store: host + '/music/store',
+	index: host + '/music/index',
+	showByUser: host + '/music/showByUser',
+	uploadImg: host + '/music/uploadImg',
+}
 global.id= localStorage.getItem('user')

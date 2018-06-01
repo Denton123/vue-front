@@ -61,6 +61,7 @@ import api from '../utils/api.js'
                                 this.$store.state.type = true
                                 // let user = JSON.stringify(res.data.id)
                                 localStorage.setItem('user', res.data.id)
+                                // window.user = res.data
                                 setTimeout(()=>{
                                     this.$router.push('/index')
                                 }, 3500)

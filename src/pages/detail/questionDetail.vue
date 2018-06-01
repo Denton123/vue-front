@@ -66,7 +66,8 @@ import msg from '../formMsg'
 		    	return html.replace(/<.*?>/ig,"")
 		    },
 			getMsg () {
-				this.ajaxGet(question.showById + '/' + this.problem_id, res=>{
+				const model = this.$route.params.model
+				this.ajaxGet(global[model].showById + '/' + this.problem_id, res=>{
 					let data = res.data
 					this.detailSetting.title = data.title
 					this.detailSetting.date = data.updatedAt
@@ -87,6 +88,8 @@ import msg from '../formMsg'
 						resolve()
 					}).then(res=>{
 						this.getMsg()
+					}).catch(err => {
+						console.log(err)
 					})
 				})
 			},

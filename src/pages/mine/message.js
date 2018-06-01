@@ -2,12 +2,6 @@ import card from './child-component/card.vue'
 export default {
 	tag: [
 		{
-			label: '动态',
-			name: 'dynamic',
-			cardComponent: card,
-			blankIcon: 'el-icon-news',
-		},
-		{
 			label: '回答',
 			name: 'answer',
 			cardComponent: card,
@@ -39,7 +33,21 @@ export default {
 			cardComponent: card,
 			blankIcon: 'el-icon-loading',
 	        popFlag: true
-		}
+		},
+		{
+			label: '音乐',
+			name: 'music',
+			cardComponent: card,
+			blankIcon: 'el-icon-loading',
+	        popFlag: true
+		},
+		{
+			label: '音乐产品',
+			name: 'musicProduct',
+			cardComponent: card,
+			blankIcon: 'el-icon-news',
+			popFlag: true
+		},
 	],
 	extractTag: [
 		{
@@ -66,7 +74,8 @@ export default {
 		{
 			label: '音乐',
 			name: 'music',
-			imgIcon: 'music'
+			imgIcon: 'music',
+			toUrl: 'music'
 		}
 	]
 }

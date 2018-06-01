@@ -15,7 +15,8 @@ module.exports = {
     proxyTable: {
         '/api': {
             target: 'http://localhost:3000',
-            changeOrigin: true,
+            secure: false, // 如果是https接口，需要配置这个参数
+            changeOrigin: true, // 接口是否跨域
             pathRewrite: {
                 '^/api': '/'
             }
@@ -62,6 +63,7 @@ module.exports = {
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
+    // path.resolve()将一系列路径或路径解析为绝对路径
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',

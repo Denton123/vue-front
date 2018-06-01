@@ -6,17 +6,27 @@
  * 
  */
 <template>
-    <div class="index">
+    <div>
+      <div class="index">
         <div class="index-left-tag">
             <tag
-                :models="tagModels" />
+                :models="tagM<html>
+    <head>
+        <title>webpack.toobug.net</title>
+        <script src="./bundle1.1.js"></script>
+    </head>
+    <body>
+    </body>
+</html>odels" />
         </div>
         <div class="index-right-tag">
             <tag
                 :models="extractModels"
                 :liClass="liClass" />
         </div>
-        
+    </div>
+    <div>
+    </div>
     </div>
 </template>
 
@@ -30,16 +40,15 @@ export default {
     return {
         tagModels: Object.assign(obj, msg.tag),
         extractModels: Object.assign(extractObj, msg.extractTag),
-        liClass: 'liClass'
+        liClass: 'liClass',
     }
   },
   methods: {
-
   },
   mounted () {
+    console.log(process.env);
   },
   computed: {
-    
   },
   components: {
     tag

@@ -56,8 +56,9 @@ export default {
   },
   methods: {
     handleClick (model) {
+        console.log(model);
         if (model.popFlag) {
-            this.popData['show'] = true
+            this.popData['show'] = true 
             this.popData['theme'] = model.label
             this.popData['name'] = model.name
             this.action = global[model.name].uploadImg
@@ -81,11 +82,19 @@ export default {
         this.popData.show = !this.popData.show
     },
     submit (form) {
+        Object.assign(form, {
+            user_id: localStorage.getItem('user')
+        })
+        console.log(form);
         let name = this.popData['name']
-        this.ajaxPost(global[name].store + '/' + global.id, form, res => {
+        this.ajaxPost(global[name].store, form, res => {
             console.log(res);
-            res.data === 'success' ?  this.$message.success(`${this.popData['theme']}发布成功`) : this.$message.error(`${this.popData['theme']}发布失败`);
-            this.handleClose()
+            if (res.data === 'success') {
+                this.$message.success(`${this.popData['theme']}发布成功`)
+                this.handleClose()
+            } else {
+                this.$message.error(`${res.data.errors[0].message}发布失败`)
+            }
         })
     },
     // 抽出form的field

@@ -26,6 +26,9 @@
 </template>
 
 <script>
+    // commonjs引入
+    // import foo from './test3.js'
+    import * as baz from './test3'
 	export default{
 		data () {
 			return {
@@ -35,6 +38,22 @@
 		methods: {
 			change () {
 				this.$router.push('/mine/model/dynamic')
+                // import的动态加载
+                import('./test.js')
+                    .then(({default: o}) => {
+                        console.log(o);
+                    })
+                // 按需加载多个
+                Promise.all([
+                    import('./test.js'),
+                    import('./test2.js')
+                    ])
+                .then(([module1, module2]) => {
+                    console.log(module1);
+                    console.log(module2);
+                })
+                console.log(baz);
+                console.log(baz);
 			},
 			logout () {
 				this.ajaxGet(users.logout, res => {

@@ -1,4 +1,10 @@
-import home from '@/pages/home/home'
+// import home from '@/pages/home/home'
+// const home = resolve => {
+//     require.ensure(['@/pages/home/home'], () => {
+//         resolve(require('@/pages/home/home'))
+//     }, 'home')
+// }
+const home = () => import('@/pages/home/home')
 import login from '@/views/login'
 import mine from '@/pages/mine/mine'
 import edit from '@/pages/mine/edit'
@@ -7,7 +13,8 @@ import questionDetail from '@/pages/detail/questionDetail'
 import index from '@/pages/index/index'
 import one from '@/pages/one/one'
 import music from '@/pages/music/music'
-import musicDetail from '@/pages/music/detail'
+import instrument from '@/pages/music/instrument'
+import musicProductDetail from '@/pages/music/productDetail'
 
 let routes = [
     {
@@ -44,7 +51,11 @@ let routes = [
             },
             {
                 path: '/music/:model/:id',
-                component: musicDetail
+                component: instrument
+            },
+            {
+                path:'/music/:model/:id/:id',
+                component: musicProductDetail,
             },
             {
                 path: '/:model/:id',

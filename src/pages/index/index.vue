@@ -10,14 +10,7 @@
       <div class="index">
         <div class="index-left-tag">
             <tag
-                :models="tagM<html>
-    <head>
-        <title>webpack.toobug.net</title>
-        <script src="./bundle1.1.js"></script>
-    </head>
-    <body>
-    </body>
-</html>odels" />
+                :models="tagModels" />
         </div>
         <div class="index-right-tag">
             <tag
@@ -26,6 +19,7 @@
         </div>
     </div>
     <div>
+     
     </div>
     </div>
 </template>
@@ -52,6 +46,8 @@ export default {
   },
   components: {
     tag
+  },
+  watch: {
   }
 }
 </script>

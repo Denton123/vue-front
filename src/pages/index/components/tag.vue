@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     handleClick (model) {
-        console.log(model);
+        console.log(model.name);
         if (model.popFlag) {
             this.popData['show'] = true 
             this.popData['theme'] = model.label
@@ -82,6 +82,7 @@ export default {
         this.popData.show = !this.popData.show
     },
     submit (form) {
+        console.log(form);
         Object.assign(form, {
             user_id: localStorage.getItem('user')
         })
@@ -132,5 +133,8 @@ export default {
         display: inline-block;
         width: 33.3%;
         text-align: center;
+    }
+    li{
+        display: inline-block;
     }
 </style>

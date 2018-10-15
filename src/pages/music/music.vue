@@ -74,6 +74,10 @@ import slide from '../one/components/slideShow'
 				border-bottom: 1px solid #bdbaba;
 				margin-bottom: 20px;
 			}
+			&-wrap {
+				width: 100%;
+				height: 195px;
+			}
 			&-img{
 				width: 100%;
 				height: 100%;
@@ -88,8 +92,9 @@ import slide from '../one/components/slideShow'
 			span{
 				display: inline-block;
 				position: absolute;
-				bottom: 20px;
-				left: 37%;
+				bottom: 60px;
+				width: 100%;
+				left: 0;
 				color: #fff;
 				font-size: 16px;
 			}

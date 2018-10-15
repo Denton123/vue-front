@@ -47,11 +47,7 @@ import pagination from '../../components/public/pagination'
 			handleClick (tab, event) {
 				this.listData = {}
 				this.getMsg(tab.name)
-				this.$router.replace({
-					params: {
-						model: tab.name
-					}
-				})
+				this.$router.query.current = tab.name
 			},
 			// 获取数据
 			getMsg(tabName, page = 1) {

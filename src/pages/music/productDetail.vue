@@ -1,5 +1,5 @@
 <template>
 	<div>
-		<h2>我是music的detail</h2>
+		hhhhhh
 	</div>
 </template>

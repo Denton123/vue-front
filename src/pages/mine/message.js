@@ -42,8 +42,8 @@ export default {
 	        popFlag: true
 		},
 		{
-			label: '音乐产品',
-			name: 'musicProduct',
+			label: '乐器',
+			name: 'instrument',
 			cardComponent: card,
 			blankIcon: 'el-icon-news',
 			popFlag: true

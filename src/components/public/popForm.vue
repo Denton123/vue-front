@@ -60,7 +60,7 @@
                                 :before-upload="beforeImgUpload"
                                 :on-success="handleAvatarSuccess"
                                >
-                                <img 
+                                <img
                                     v-if="form[item.name]" 
                                     :src="'/uploadImgs/' + form[item.name]"
                                     class="uploadImg-img">
@@ -68,6 +68,20 @@
                             </el-upload>    
                         </el-form-item>
 
+                        <!-- 下拉 -->
+                        <el-form-item
+                            v-if="item.type==='select'"
+                            :label="item.label">
+                            <el-select 
+                            v-model="form[item.name]" clearable 
+                            :placeholder="item.placeholder">
+                            <el-option
+                                v-for="i in item.options"
+                                :key="i.value"
+                                :label="i.label"
+                                :value="i.value" />
+                        </el-select>
+                        </el-form-item>
                     </div>
                     <!-- 操作按钮 -->
                    <el-form-item>

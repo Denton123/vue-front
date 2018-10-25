@@ -88,7 +88,7 @@ export default {
 			rules: [{required: true, trigger: 'blur'}]
 		}
 	],
-	// 音乐
+	// 乐器
 	instrumentComponent: [
 		{
 			type: 'text',

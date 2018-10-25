@@ -73,7 +73,7 @@
                             v-if="item.type==='select'"
                             :label="item.label">
                             <el-select 
-                            v-model="form[item.name]" clearable 
+                            v-model="form[item.name]" clearable
                             :placeholder="item.placeholder">
                             <el-option
                                 v-for="i in item.options"
